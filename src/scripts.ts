@@ -15,7 +15,7 @@ export interface Product {
   createdAt: number,
   currency: "USD" | "HUF" | "EUR",
   type: "Program" | "Course",
-  relatedCourses: {}[]
+  relatedCourses: Product[]
 }
 
 const products: Product[] = [
@@ -249,7 +249,7 @@ type EUR = 'EUR'
 //  both EUR and USD. How can you define two possible
 //  types for one type? (we have seen before
 //  with numbers and strings).
-type Currency = "USD" | "EUR"
+type Currency = USD | EUR | null
 const firstCurrency: Currency = 'USD';
 const secondCurrency: Currency = 'EUR'
 const usd: USD = firstCurrency;
@@ -287,7 +287,7 @@ const someCurrency = getSomeCurrency(someAccount)
 //  the type errors.
 type AccountWithOrWithoutCurrency = {
     name: string,
-    currency: 'USD' | 'EUR' | null
+    currency: Currency
 }
 const removeCurrency = (account: AccountWithOrWithoutCurrency): AccountWithOrWithoutCurrency => {
     return {
